@@ -1,0 +1,26 @@
+/* color.css */
+:root {
+  --primary-color: #04263b;
+  --secondary-color: #ffffff;
+  --accent-color: #00507e;
+  
+  --dark-color: #333333;
+  --medium-color: #666666;
+  --light-color: #f0f0f0;
+  --white-color: #b8b8b8;
+  --white-light-black: #3f3f3f;
+  --error_red_bg:#ffcfcf;
+
+  --pre_span_bg_blue:hsl(209, 100%, 91%);
+  --pre_span_bg_green:hsl(115, 93%, 89%);
+
+  --button-bg-color: #3498db; 
+  --button-text-color: #ffffff; 
+  --white:#ffffff;
+  
+  --input-border-color: var(--medium-color);
+  --input-bg-color: var(--white-color);
+  
+  --nav-button-bg-color: #00000080;
+  --nav-button-text-color: var(--white-color);
+}

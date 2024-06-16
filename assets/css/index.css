@@ -1,0 +1,184 @@
+/* index.css */
+@import url('color.css');
+
+*{
+  margin: 00px;
+  padding: 00px;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-color);
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 90%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: var(--accent-color);
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 0 40px 40px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.slide_child {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--dark-color);
+}
+
+.input-group input {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-color: var(--white-light-black);
+  border-radius: 5px;
+  background-color: var(--white);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
+
+.small-btn {
+  padding: 5px 10px;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* display: none; */
+}
+
+.description {
+  color: var(--white-light-black);
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--light-color);
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: var(--button-text-color);
+  min-width: 200px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.nav-buttons button {
+  background-color: var(--nav-button-bg-color);
+  color: var(--white);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10%;
+  user-select: none;
+}
+.car_heading{
+    color: var(--white);
+    margin: 1rem 00px;
+}
+.error_span{
+  margin-right: auto;
+  background-color: var(--error_red_bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px 5px;
+}
+.slide .slide_child .input-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    background: transparent; 
+    position: relative;
+    z-index: 2; 
+    outline: none;
+}
+.slide .slide_child .input-group label{
+    display:flex;
+    justify-content:start;
+    cursor: pointer;
+    font-weight:bold;
+    align-items:center;
+    width: 100%;
+}
+.slide .slide_child .input-group label input{
+   display:inline-block;
+   max-width: 50px;
+   height: 20px;
+   margin: 00px;
+}
+
+.input-group span {
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+.slide .slide_child .input-group  .pre_inner_row{
+    padding:5px;
+    margin: 5px;
+    display: flex;
+    gap: 5px;
+    justify-content: start;
+    align-items: center;
+}
+.slide .slide_child .input-group  .pre_inner_row .pre_row_fi_span{
+    background-color: var(--pre_span_bg_blue);
+    border-radius: 5px;
+    padding: 5px;
+}
