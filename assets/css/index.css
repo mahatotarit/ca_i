@@ -66,7 +66,7 @@ body {
 }
 
 .input-group input {
-  width: calc(100% - 22px);
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border-color: var(--white-light-black);
@@ -87,7 +87,7 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  /* display: none; */
+  display: none;
 }
 
 .description {
@@ -98,7 +98,7 @@ body {
   background-color: var(--light-color);
 }
 
-.submit-btn {
+.next_btn {
   padding: 10px 20px;
   background-color: var(--accent-color);
   color: var(--button-text-color);
@@ -134,11 +134,11 @@ body {
 .error_span{
   margin-right: auto;
   background-color: var(--error_red_bg);
-  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
   padding: 5px 5px;
+  display:none;
 }
 .slide .slide_child .input-group select {
     width: 100%;
@@ -181,4 +181,50 @@ body {
     background-color: var(--pre_span_bg_blue);
     border-radius: 5px;
     padding: 5px;
+}
+
+
+/* overly  */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  display: none;
+  z-index: 9999999999; 
+}
+
+.div_divterminal{
+  height: 250px;
+  width: 400px;
+  background-color: black;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  color: white;
+}
+.terminal_body_duiv{
+  overflow: auto;
+  padding: 0.5rem;
+}
+.div_divterminal .terminal_body_duiv::-webkit-scrollbar{
+  display: none;
+}
+.div_divterminal h4{
+  text-align: center;
+  padding: 0.3rem;
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  background-color: rgb(41, 41, 41);
+}
+
+.d-none{
+  display:none;
+}
+.d-block{
+  display:block;
+}
+.d-flex{
+  display:flex;
 }

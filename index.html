@@ -3,29 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Three Slide Carousel</title>
+  <title>Contact interact</title>
   <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
+  <div class="overlay" id="overlay"></div>
+  
   <div class="carousel-container">
     <div class="carousel">
 
+      <!-- rpc url setup  -->
       <div class="slide">
-        <h2 class="car_heading">RPC Url Setup</h2>
+        <h2 class="car_heading">RPC URL Setup</h2>
         <div class="slide_child">
           <div class="input-group">
             <label for="rpc_url1">1. RPC URL 1</label>
             <input type="text" id="rpc_url1" placeholder="please enter rpc url">
              <div>
               <div class="description">
-                <small>Another example description Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde voluptas assumenda quidem aliquam at. Repudiandae harum dolore sed ea facilis. text for Slide 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, hic? </small>
+                <small>
+                  Enter the RPC URL for the network you want to interact with for contract interaction. You can use <a href="">Alchemy</a> or <a href="">Infura</a> as providers.
+                </small>
               </div>
               <div class="button-group">
-                <small class="error_span">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, consectetur.
+                <small class="error_span" id="rpc_input_1_error">
+                  Error
                 </small>
-                <button class="small-btn">BTC</button>
-                <button class="small-btn">Bitcoin mainnet</button>
+                <button class="small-btn" id="rpc_input_1_symbol">ETH</button>
+                <button class="small-btn" id="rpc_input_1_network">Ethereum</button>
               </div>
             </div>
           </div>
@@ -35,22 +40,25 @@
             <input type="text" id="rpc_url2" placeholder="please enter rpc url">
              <div>
               <div class="description">
-                <small>Another example description Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde voluptas assumenda quidem aliquam at. Repudiandae harum dolore sed ea facilis. text for Slide 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, hic? </small>
+                <small>
+                  Enter the RPC URL for the network you want to interact with for contract interaction. You can use <a href="">Alchemy</a> or <a href="">Infura</a> as providers.
+                </small>
               </div>
               <div class="button-group">
-                <small class="error_span">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, consectetur.
+                <small class="error_span" id="rpc_input_2_error">
+                  Error
                 </small>
-                <button class="small-btn">BTC</button>
-                <button class="small-btn">Bitcoin mainnet</button>
+                <button class="small-btn" id="rpc_input_2_symbol">ETH</button>
+                <button class="small-btn" id="rpc_input_2_network">Ethereum</button>
               </div>
             </div>
           </div>
           
-          <button class="submit-btn">Submit</button>
+          <button class="next_btn" id="rpc_setup_submit">Submit</button>
         </div>
       </div>
 
+      <!-- contract setup  -->
       <div class="slide">
         <h2 class="car_heading">Contract Setup</h2>
         <div class="slide_child">
@@ -59,14 +67,14 @@
             <input type="text" id="">
             <div>
               <div class="description">
-                <small>which one our want to perform Another example description text for Slide 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, hic? </small>
+                <small>Enter the contract address of the token you want to transfer or interact with from your compromised wallet.</small>
               </div>
               <div class="button-group">
                 <small class="error_span">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, consectetur.
+                  Error
                 </small>
-                <button class="small-btn">BTC</button>
-                <button class="small-btn">Bitcoin mainnet</button>
+                <button class="small-btn">USDT</button>
+                <button class="small-btn">USDT</button>
               </div>
             </div>
           </div>
@@ -75,29 +83,32 @@
             <textarea name="" id="" rows="5" style="width: 100%;"></textarea>
             <div>
               <div class="description">
-                <small>which one our want to perform Another example description text for Slide 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, hic? </small>
+                <small>Enter the ABI of the contract address.</small>
               </div>
             </div>
           </div>
-          <button class="submit-btn">Submit</button>
+          <button class="next_btn">Submit</button>
         </div>
       </div>
 
+      <!-- contract action  -->
       <div class="slide">
         <h2 class="car_heading">Contract Action</h2>
         <div class="slide_child">
           <div class="input-group">
-            <select name="" id="">
+          <label for="contract_action">1. Select the action you want to perform from your compromised wallet:</label>
+            <select name="" id="contract_action">
               <option value="">Transfer</option>
               <option value="">Approval</option>
               <option value="">Transferowner</option>
               <option value="">Transfrom</option>
             </select>
           </div>
-          <button class="submit-btn">Submit</button>
+          <button class="next_btn">Submit</button>
         </div>
       </div>
 
+      <!-- wallet setup  -->
       <div class="slide">
         <h2 class="car_heading">Wallet Setup</h2>
         <div class="slide_child">
@@ -106,11 +117,11 @@
             <input type="text" id="target_wallet_private_key_input" placeholder="please enter target Wallet private key">
              <div>
               <div class="description">
-                <small>Another example description Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde voluptas assumenda quidem aliquam at. Repudiandae harum dolore sed ea facilis. text for Slide 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, hic? </small>
+                <small>Enter the private key of your compromised wallet.</small>
               </div>
               <div class="button-group">
                 <small class="error_span">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, consectetur.
+                  Error
                 </small>
               </div>
             </div>
@@ -121,45 +132,47 @@
             <input type="text" id="your_wallet_private_key_input" placeholder="please enter Your wallet private key">
              <div>
               <div class="description">
-                <small>Another example description Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde voluptas assumenda quidem aliquam at. Repudiandae harum dolore sed ea facilis. text for Slide 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, hic? </small>
+                <small>Enter your wallet private key for gas fee to execute the contract.</small>
               </div>
               <div class="button-group">
                 <small class="error_span">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero, consectetur.
+                  Error
                 </small>  
               </div>
             </div>
           </div>
           
-          <button class="submit-btn">Submit</button>
+          <button class="next_btn">Submit</button>
         </div>
       </div>
 
+      <!-- choose gas fee  -->
       <div class="slide">
-        <h2 class="car_heading">Choose Payment</h2>
+        <h2 class="car_heading">Choose Gas Fee</h2>
         <div class="slide_child">
 
            <div class="input-group">
               <label>
                   <input type="radio" name="payment" value="good">
-                  <span style="color: hsl(134, 100%, 40%);"> Good ( 90% Success )</span> &nbsp; transactions cost - <span>34 ETH</span>
+                  <span style="color: hsl(134, 100%, 40%);"> Good ( 90% Success )</span> &nbsp; Transaction cost - <span>34 ETH</span>
               </label>
               <br>
               <label>
                   <input type="radio" name="payment" value="better">
-                  <span style="color: hsl(134, 100%, 30%);"> Better ( 98% Success )</span> &nbsp; transactions cost - <span>34 ETH</span>
+                  <span style="color: hsl(134, 100%, 30%);"> Better ( 98% Success )</span> &nbsp; Transaction cost - <span>34 ETH</span>
               </label>
               <br>
               <label>
                   <input type="radio" name="payment" value="best">
-                  <span style="color: hsl(134, 100%, 20%);">Best ( 99.99% Success )</span> &nbsp; transactions cost - <span>34 ETH</span>
+                  <span style="color: hsl(134, 100%, 20%);">Best ( 99.99% Success )</span> &nbsp; Transaction cost - <span>34 ETH</span>
               </label>
           </div>
           
-          <button class="submit-btn">Submit</button>
+          <button class="next_btn">Submit</button>
         </div>
       </div>
 
+      <!-- preview details -->
       <div class="slide">
       <h2 class="car_heading">Preview</h2>
       <div class="slide_child">
@@ -183,16 +196,34 @@
         </div>
 
         
-        <button class="submit-btn">Submit</button>
+        <button class="next_btn">Submit</button>
       </div>
-    </div>
+      </div>  
+
+      <!-- bot  -->
+      <div class="slide">
+          <h2 class="car_heading">Bot</h2>
+          <div class="slide_child">
+            <div class="div_divterminal">
+              <h4>Terminal</h4>
+              <div class="terminal_body_duiv" id="bot_terminal_body">
+
+              </div>
+            </div>
+            <button class="next_btn start_btn">Start</button>
+          </div>
+      </div>
 
     </div>
     <div class="nav-buttons">
-      <button class="prev" onclick="moveSlides(-1)">&#10094;</button>
-      <button class="next" onclick="moveSlides(1)">&#10095;</button>
+      <button class="prev" id="pre_btn">&#10094;</button>
+      <button class="next" id="next_btn">&#10095;</button>
     </div>
   </div>
   <script src="assets/js/index.js"></script>
+  <script src="src/ethers.js"></script>
+  <script src="script/ele.js"></script>
+  <script src="script/function.js"></script>
+  <script src="script/index.js"></script>
 </body>
 </html>
