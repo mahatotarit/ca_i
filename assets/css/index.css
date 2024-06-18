@@ -221,6 +221,15 @@ body {
   background-color: rgb(41, 41, 41);
 }
 
+.key_danger{
+   background-color: #ffb5b5;
+   color:#000000;
+}
+.key_success{
+  background-color: #caffb5;
+  color:#000000;
+}
+
 .d-none{
   display:none !important;
 }

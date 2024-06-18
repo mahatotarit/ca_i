@@ -13,6 +13,9 @@ let first_provider;
 let second_provider;
 let contract;
 
+let target_wallet;
+let your_wallet;
+
 // result value 
 let first_network_row;
 let second_network_row;
@@ -127,6 +130,8 @@ async function isValidContractAddress(contract_address_agru,abi_argu){
 
     contract = contract_inner;
     contract_name = ca_ve;
+    
+    error_action(contract_name, true, contract_address_name);
 
     res_ca = true;
     set_all_contract_action();
@@ -134,14 +139,99 @@ async function isValidContractAddress(contract_address_agru,abi_argu){
 
   } catch (error) {
     res_ca = false;
+    error_action("", false, contract_address_name);
     return res_ca;
   }
 
 }
 
+async function selectContractAction(contract_action_argu){
+  let ca_a_status = false;
+  const functionNames = abi
+  .filter((item) => item.type === 'function')
+  .map((item) => item.name);
+  
+  functionNames.forEach((name) => {
+    if(name == contract_action_argu){
+      contract_action = contract_action_argu;
+      ca_a_status = true;
+    }
+  });
+
+  return ca_a_status;
+
+}
+
+async function isValidPrivateKey(inner_private_key) {
+  try {
+    const wallet = await new ethers.Wallet(inner_private_key);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function setupTargetWallet(target_wallet_key_argu){
+
+  let tar_wall_status = false;
+  try {
+    let private_target_key_check = await isValidPrivateKey(target_wallet_key_argu);
+    if (private_target_key_check) {
+      const target_pre_wallet = await new ethers.Wallet(target_wallet_key_argu, first_provider);
+      target_wallet = target_pre_wallet;
+      tar_wall_status = true;
+      wallet_mess_ac(target_wallet.address, target_wallet_pri_key_in_error, true,true);
+    } else {
+      wallet_mess_ac("Please enter valid private key", target_wallet_pri_key_in_error, true,false);
+    }
+  } catch (error) {
+    wallet_mess_ac("Please enter valid private key", target_wallet_pri_key_in_error, true,false);
+  }
+
+  return tar_wall_status;
+
+}
+
+async function setupYourWallet(your_wallet_key_argu){
+
+  let your_wall_status = false;
+  try {
+    let private_target_key_check = await isValidPrivateKey(your_wallet_key_argu);
+    if (private_target_key_check) {
+      const your_pre_wallet = await new ethers.Wallet(your_wallet_key_argu, second_provider);
+      your_wallet = your_pre_wallet;
+      your_wall_status = true;
+      wallet_mess_ac(your_wallet.address, your_wallet_pri_key_in_error, true,true);
+    } else {
+      wallet_mess_ac("Please enter valid private key", your_wallet_pri_key_in_error, true,false);
+    }
+  } catch (error) {
+    wallet_mess_ac("Please enter valid private key", your_wallet_pri_key_in_error, true,false);
+  }
+
+  return your_wall_status;
+
+}
 // =======================================================================================
 // =================        static function for frontend            ======================
 // =======================================================================================
+
+function wallet_mess_ac(message,ele,action,type){
+
+  if(type){
+    ele.style.cssText = `background-color: #caffb5; color:#000000;`;
+  }else{
+    ele.style.cssText = `background-color: #ffb5b5; color:#000000;`;
+  }
+
+  if (action) {
+    ele.classList.add('d-block');
+    ele.innerHTML = message;
+  } else {
+    ele.innerHTML = '';
+    ele.classList.remove('d-block');
+  }
+}
 
 function set_all_contract_action(){
 

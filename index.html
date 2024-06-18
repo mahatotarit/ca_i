@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact interact</title>
   <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="shortcut icon" href="assets/image/logo/logo.png" type="image/x-icon">
 </head>
 <body>
   <div class="overlay" id="overlay"></div>
@@ -99,7 +100,7 @@
           <div class="input-group">
           <label for="contract_action_input">1. Select the action you want to perform from your compromised wallet:</label>
             <select name="" id="contract_action_input">
-              
+              <!-- by js -->
             </select>
           </div>
           <button class="next_btn" id="contract_action_submit">Submit</button>
@@ -118,7 +119,7 @@
                 <small>Enter the private key of your compromised wallet.</small>
               </div>
               <div class="button-group">
-                <small class="error_span">
+                <small class="error_span" id="target_wallet_pri_key_in_error">
                   Error
                 </small>
               </div>
@@ -133,14 +134,14 @@
                 <small>Enter your wallet private key for gas fee to execute the contract.</small>
               </div>
               <div class="button-group">
-                <small class="error_span">
+                <small class="error_span" id="your_wallet_pri_key_in_error">
                   Error
                 </small>  
               </div>
             </div>
           </div>
           
-          <button class="next_btn">Submit</button>
+          <button class="next_btn" id="wallet_setup_submit">Submit</button>
         </div>
       </div>
 

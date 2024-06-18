@@ -20,7 +20,6 @@ let rpc_setup_submit_btn;
 let contract_address_input;
 let contract_address_error;
 
-let contract_address_symbol;
 let contract_address_name;
 
 let contract_abi_textarea;
@@ -30,6 +29,19 @@ let contract_setup_submit;
 // ============ contract action ==============
 let contract_action_input;
 let contract_action_submit;
+
+// ============ Wallet setup ==============
+let target_wallet_private_key_input;
+let your_wallet_private_key_input;
+
+let target_wallet_pri_key_in_error;
+let your_wallet_pri_key_in_error;
+
+let wallet_setup_submit;
+
+
+
+let all_slider;
 
 document.addEventListener('DOMContentLoaded',function(){
   // ========  slide btn ========
@@ -55,7 +67,6 @@ document.addEventListener('DOMContentLoaded',function(){
   contract_address_input = document.querySelector('#contract_address_input');
   contract_address_error = document.querySelector('#contract_address_error');
 
-  contract_address_symbol = document.querySelector('#contract_address_symbol');
   contract_address_name = document.querySelector('#contract_address_name');
 
   contract_abi_textarea = document.querySelector('#contract_abi_textarea');
@@ -66,4 +77,15 @@ document.addEventListener('DOMContentLoaded',function(){
   contract_action_input = document.querySelector('#contract_action_input');
   contract_action_submit = document.querySelector('#contract_action_submit');
 
+  // ============ Wallet setup ==============
+  target_wallet_private_key_input = document.querySelector('#target_wallet_private_key_input');
+  your_wallet_private_key_input = document.querySelector('#your_wallet_private_key_input');
+
+  target_wallet_pri_key_in_error = document.querySelector('#target_wallet_pri_key_in_error');
+  your_wallet_pri_key_in_error = document.querySelector('#your_wallet_pri_key_in_error');
+
+  wallet_setup_submit = document.querySelector('#wallet_setup_submit');
+
+
+  all_slider = document.querySelectorAll('.slide');
 });
