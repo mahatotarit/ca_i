@@ -72,6 +72,7 @@ body {
   border-color: var(--white-light-black);
   border-radius: 5px;
   background-color: var(--white);
+  border:1px solid var(--button-bg-color);
 }
 
 .button-group {
@@ -162,6 +163,7 @@ body {
    display:inline-block;
    max-width: 50px;
    height: 20px;
+   border:none;
    margin: 00px;
 }
 
@@ -220,11 +222,11 @@ body {
 }
 
 .d-none{
-  display:none;
+  display:none !important;
 }
 .d-block{
-  display:block;
+  display:block !important;
 }
 .d-flex{
-  display:flex;
+  display:flex !important
 }

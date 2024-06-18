@@ -29,8 +29,8 @@
                 <small class="error_span" id="rpc_input_1_error">
                   Error
                 </small>
-                <button class="small-btn" id="rpc_input_1_symbol">ETH</button>
-                <button class="small-btn" id="rpc_input_1_network">Ethereum</button>
+                <button class="small-btn" id="rpc_input_1_network"></button>
+                <button class="small-btn" id="rpc_input_1_symbol"></button>
               </div>
             </div>
           </div>
@@ -48,8 +48,8 @@
                 <small class="error_span" id="rpc_input_2_error">
                   Error
                 </small>
-                <button class="small-btn" id="rpc_input_2_symbol">ETH</button>
-                <button class="small-btn" id="rpc_input_2_network">Ethereum</button>
+                <button class="small-btn" id="rpc_input_2_network"></button>
+                <button class="small-btn" id="rpc_input_2_symbol"></button>
               </div>
             </div>
           </div>
@@ -64,30 +64,31 @@
         <div class="slide_child">
           <div class="input-group">
             <label for="">1. Contract Address</label>
-            <input type="text" id="">
+            <input type="text" placeholder="Enter the contract address" id="contract_address_input">
             <div>
               <div class="description">
                 <small>Enter the contract address of the token you want to transfer or interact with from your compromised wallet.</small>
               </div>
               <div class="button-group">
-                <small class="error_span">
+                <small class="error_span" id="contract_address_error">
                   Error
                 </small>
-                <button class="small-btn">USDT</button>
-                <button class="small-btn">USDT</button>
+                <button class="small-btn" id="contract_address_symbol">USDT</button>
+                <button class="small-btn" id="contract_address_name">USDT</button>
               </div>
             </div>
           </div>
            <div class="input-group">
-            <label for="">2. Contract ABI</label>
-            <textarea name="" id="" rows="5" style="width: 100%;"></textarea>
-            <div>
-              <div class="description">
-                <small>Enter the ABI of the contract address.</small>
+              <label for="contract_abi_textarea">2. Contract ABI</label>
+              <textarea name="" id="contract_abi_textarea" rows="5" placeholder='Like - [  { "constant": true, "inputs": [], "name": "name", "outputs": {"name": "","type": "string"}],"payable": false,"stateMutability": "view","type": "function"} ]' style="width: 100%; padding:5px; margin-bottom: 10px;  "></textarea>
+              <div>
+                <div class="description" >
+                  <small>Enter the ABI of the contract address.</small>
+                </div>
+                <small class="error_span" id="abi_error_span"></small>
               </div>
-            </div>
           </div>
-          <button class="next_btn">Submit</button>
+          <button class="next_btn" id="contract_setup_submit">Submit</button>
         </div>
       </div>
 
@@ -96,15 +97,12 @@
         <h2 class="car_heading">Contract Action</h2>
         <div class="slide_child">
           <div class="input-group">
-          <label for="contract_action">1. Select the action you want to perform from your compromised wallet:</label>
-            <select name="" id="contract_action">
-              <option value="">Transfer</option>
-              <option value="">Approval</option>
-              <option value="">Transferowner</option>
-              <option value="">Transfrom</option>
+          <label for="contract_action_input">1. Select the action you want to perform from your compromised wallet:</label>
+            <select name="" id="contract_action_input">
+              
             </select>
           </div>
-          <button class="next_btn">Submit</button>
+          <button class="next_btn" id="contract_action_submit">Submit</button>
         </div>
       </div>
 
@@ -220,10 +218,12 @@
       <button class="next" id="next_btn">&#10095;</button>
     </div>
   </div>
-  <script src="assets/js/index.js"></script>
   <script src="src/ethers.js"></script>
+  <script src="script/network.js"></script>
+  <script src="assets/js/index.js"></script>
   <script src="script/ele.js"></script>
   <script src="script/function.js"></script>
+  <script src="script/controller.js"></script>
   <script src="script/index.js"></script>
 </body>
 </html>
