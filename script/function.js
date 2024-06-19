@@ -21,6 +21,12 @@ let first_network_row;
 let second_network_row;
 let contract_name;
 
+let gas_price; // (gwei)
+let gas_limit;
+let gas_fee; //( wei)
+let gas_fee_per_tx; // (gwei)
+let gas_fee_per_tx_eth; // (eth)
+
 async function isValidFirstRPCURL(first_rpc_url_argu) {
   let rpc_1_status = false;
   try {
@@ -209,8 +215,51 @@ async function setupYourWallet(your_wallet_key_argu){
     wallet_mess_ac("Please enter valid private key", your_wallet_pri_key_in_error, true,false);
   }
 
+  fetch_transctions_cost();
   return your_wall_status;
 
+}
+
+
+
+
+
+
+
+
+async function fetch_transctions_cost() {
+
+  const tx = {
+    to: '0xCEd271A5C2ED93Ba59Dce555FDc73E1dE3Dcad22',
+    value: ethers.parseEther('0.0000001'),
+  };
+
+  try {
+    const FeeData = await first_provider.getFeeData();
+    let GasPrice = FeeData.gasPrice;
+    gas_price = ethers.formatUnits(GasPrice, 'gwei');
+    
+    const gasLimit = await first_provider.estimateGas(tx);
+    gas_limit = Number(gasLimit);
+
+    let GasFee =Math.ceil(Number(GasPrice) * Number(gasLimit));
+    gas_fee_per_tx = Math.ceil(ethers.formatUnits(GasFee, 'gwei'));
+    gas_fee_per_tx_eth = ethers.formatUnits(GasFee, 'ether');
+    gas_fee = Math.ceil(GasFee);
+    
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+
+}
+
+async function set_tx_fee_cost(){
+  let gas_setup_res = await fetch_transctions_cost();
+  if(gas_setup_res){
+    set_gas_cost();
+  }
 }
 // =======================================================================================
 // =================        static function for frontend            ======================
@@ -231,6 +280,19 @@ function wallet_mess_ac(message,ele,action,type){
     ele.innerHTML = '';
     ele.classList.remove('d-block');
   }
+}
+
+function set_gas_cost(){
+
+  let new_gwei_tx_cost = Math.ceil(gas_fee);
+
+  good_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * payment_input[0].value,'ether')} ${first_network_row.symbol}`;
+  better_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * payment_input[1].value,'ether')} ${first_network_row.symbol}`;
+  best_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * payment_input[2].value,'ether')} ${first_network_row.symbol}`;
+
+  setTimeout(() => {
+    set_tx_fee_cost()();
+  }, 15000);
 }
 
 function set_all_contract_action(){

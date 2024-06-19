@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded',function(){
           steps = 1;
           moveSlides(+1);
           slide_front = 2;
+          set_tx_fee_cost();
         }
 
       }
@@ -89,5 +90,20 @@ document.addEventListener('DOMContentLoaded',function(){
           }
       }
     })
+
+    pay_choose_submit.addEventListener('click',function(){
+      submit_btn_wait(pay_choose_submit);
+      let checked_input;
+      payment_input.forEach((element) => {
+        if(element.checked == true){
+          checked_input = element;
+        }
+      });
+
+
+
+      submit_btn_normal(pay_choose_submit);
+
+    });
 
 });

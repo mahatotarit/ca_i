@@ -152,22 +152,22 @@
 
            <div class="input-group">
               <label>
-                  <input type="radio" name="payment" value="good">
-                  <span style="color: hsl(134, 100%, 40%);"> Good ( 90% Success )</span> &nbsp; Transaction cost - <span>34 ETH</span>
+                  <input type="radio" class="payment_input" name="payment" value="3">
+                  <span style="color: hsl(134, 100%, 40%);"> Good ( 90% Success )</span> &nbsp; Transaction cost - <span id="good_gas_cost">fetching...</span>
               </label>
               <br>
               <label>
-                  <input type="radio" name="payment" value="better">
-                  <span style="color: hsl(134, 100%, 30%);"> Better ( 98% Success )</span> &nbsp; Transaction cost - <span>34 ETH</span>
+                  <input type="radio" class="payment_input" checked name="payment" value="4">
+                  <span style="color: hsl(134, 100%, 30%);"> Better ( 98% Success )</span> &nbsp; Transaction cost - <span id="better_gas_cost">fetching...</span>
               </label>
               <br>
               <label>
-                  <input type="radio" name="payment" value="best">
-                  <span style="color: hsl(134, 100%, 20%);">Best ( 99.99% Success )</span> &nbsp; Transaction cost - <span>34 ETH</span>
+                  <input type="radio" class="payment_input" name="payment" value="5">
+                  <span style="color: hsl(134, 100%, 20%);">Best ( 99.99% Success )</span> &nbsp; Transaction cost - <span id="best_gas_cost">fetching...</span>
               </label>
           </div>
           
-          <button class="next_btn">Submit</button>
+          <button class="next_btn" id="pay_choose_submit">Submit</button>
         </div>
       </div>
 

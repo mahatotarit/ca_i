@@ -39,7 +39,13 @@ let your_wallet_pri_key_in_error;
 
 let wallet_setup_submit;
 
+// ======== paymtnt choose ==========
+let payment_input;
+let pay_choose_submit;
 
+let good_gas_cost;
+let better_gas_cost;
+let best_gas_cost;
 
 let all_slider;
 
@@ -86,6 +92,13 @@ document.addEventListener('DOMContentLoaded',function(){
 
   wallet_setup_submit = document.querySelector('#wallet_setup_submit');
 
+  // ======= payment setup ===========
+  payment_input = document.querySelectorAll('.payment_input');
+  pay_choose_submit = document.querySelector('#pay_choose_submit');
+
+  good_gas_cost = document.querySelector('#good_gas_cost');
+  better_gas_cost = document.querySelector('#better_gas_cost');
+  best_gas_cost = document.querySelector('#best_gas_cost');
 
   all_slider = document.querySelectorAll('.slide');
 });
