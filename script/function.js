@@ -290,8 +290,9 @@ function set_gas_cost(){
   better_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * payment_input[1].value,'ether')} ${first_network_row.symbol}`;
   best_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * payment_input[2].value,'ether')} ${first_network_row.symbol}`;
 
-  wait(15);
-  set_tx_fee_cost();
+  setTimeout(() => {
+    set_tx_fee_cost();
+  }, 15000);
 
 }
 
