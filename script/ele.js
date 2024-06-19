@@ -102,3 +102,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
   all_slider = document.querySelectorAll('.slide');
 });
+
+async function wait(sec) {
+  await new Promise((res) => setTimeout(res, sec * 1000));
+}
