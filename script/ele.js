@@ -47,6 +47,18 @@ let good_gas_cost;
 let better_gas_cost;
 let best_gas_cost;
 
+// ======= preview =============
+let preview_submit;
+
+let functionForm;
+
+
+let your_compromised_wallet_address;
+let your_wallet_address;
+let your_transfer_token_address;
+let burning_required_balance;
+let your_wallet_balance;
+
 let all_slider;
 
 document.addEventListener('DOMContentLoaded',function(){
@@ -99,6 +111,17 @@ document.addEventListener('DOMContentLoaded',function(){
   good_gas_cost = document.querySelector('#good_gas_cost');
   better_gas_cost = document.querySelector('#better_gas_cost');
   best_gas_cost = document.querySelector('#best_gas_cost');
+
+  // ========= preview setup ======== 
+
+  functionForm = document.querySelector('#functionForm');
+  preview_submit = document.querySelector('#preview_submit');
+
+  your_compromised_wallet_address = document.querySelector('#your_compromised_wallet_address');
+  your_wallet_address = document.querySelector('#your_wallet_address');
+  your_transfer_token_address = document.querySelector('#your_transfer_token_address');
+  burning_required_balance = document.querySelector('#burning_required_balance');
+  your_wallet_balance = document.querySelector('#your_wallet_balance');
 
   all_slider = document.querySelectorAll('.slide');
 });

@@ -4,7 +4,7 @@ let second_rpc_url;
 let contract_address;
 let abi;
 let contract_action;
-
+let choose_payment_block;
 
 // ============== backend value ==========
 
@@ -113,6 +113,8 @@ async function isValidContractAddress(contract_address_agru,abi_argu){
       return res_ca;
     }
 
+    contract_address = contract_address_agru;
+
     error_action("", false, contract_address_error);
 
   } catch (error) {
@@ -152,20 +154,9 @@ async function isValidContractAddress(contract_address_agru,abi_argu){
 }
 
 async function selectContractAction(contract_action_argu){
-  let ca_a_status = false;
-  const functionNames = abi
-  .filter((item) => item.type === 'function')
-  .map((item) => item.name);
-  
-  functionNames.forEach((name) => {
-    if(name == contract_action_argu){
-      contract_action = contract_action_argu;
-      ca_a_status = true;
-    }
-  });
-
-  return ca_a_status;
-
+  contract_action = contract_action_argu;
+  create_form_for_abi_prametner();
+  return true;
 }
 
 async function isValidPrivateKey(inner_private_key) {
@@ -220,8 +211,20 @@ async function setupYourWallet(your_wallet_key_argu){
 
 }
 
+async function choosePayment(choosen_payment_block){
+  if(choosen_payment_block == 0 || choosen_payment_block == "" || choosen_payment_block < 0){
+    choose_payment_block = 3;
+    setup_preview_details();
 
+    return true;
+  }else{
+    choose_payment_block = choosen_payment_block;
+    create_form_for_abi_prametner();
+    setup_preview_details();
+    return true;
+  }
 
+}
 
 
 
@@ -242,8 +245,8 @@ async function fetch_transctions_cost() {
     const gasLimit = await first_provider.estimateGas(tx);
     gas_limit = Number(gasLimit);
 
-    let GasFee =Math.ceil(Number(GasPrice) * Number(gasLimit));
-    gas_fee_per_tx = Math.ceil(ethers.formatUnits(GasFee, 'gwei'));
+    let GasFee = Math.ceil(Number(GasPrice) * Number(gasLimit) + 2000000000);
+    gas_fee_per_tx = Math.ceil(ethers.formatUnits(GasFee, 'gwei')) + 1;
     gas_fee_per_tx_eth = ethers.formatUnits(GasFee, 'ether');
     gas_fee = Math.ceil(GasFee);
     
@@ -264,6 +267,18 @@ async function set_tx_fee_cost(){
 // =======================================================================================
 // =================        static function for frontend            ======================
 // =======================================================================================
+async function setup_preview_details() {
+  your_compromised_wallet_address.innerHTML = target_wallet.address;
+  your_wallet_address.innerHTML = your_wallet.address;
+  your_transfer_token_address.innerHTML = contract_address;
+
+  let new_gwei_tx_cost = Math.ceil(gas_fee);
+  burning_required_balance.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * 3 * choose_payment_block,'ether')} ${first_network_row.symbol}`;
+  
+  your_wallet_balance_fetch = await second_provider.getBalance(your_wallet.address);
+  your_wallet_balance.innerHTML = `${ethers.formatUnits(your_wallet_balance_fetch.toString(),'ether')} ${first_network_row.symbol}`;
+  
+}
 
 function wallet_mess_ac(message,ele,action,type){
 
@@ -285,10 +300,11 @@ function wallet_mess_ac(message,ele,action,type){
 function set_gas_cost(){
 
   let new_gwei_tx_cost = Math.ceil(gas_fee);
+  choose_payment_block = payment_input[0].value;
 
-  good_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * payment_input[0].value,'ether')} ${first_network_row.symbol}`;
-  better_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * payment_input[1].value,'ether')} ${first_network_row.symbol}`;
-  best_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * payment_input[2].value,'ether')} ${first_network_row.symbol}`;
+  good_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * 3 * payment_input[0].value,'ether')} ${first_network_row.symbol}`;
+  better_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * 3 * payment_input[1].value,'ether')} ${first_network_row.symbol}`;
+  best_gas_cost.innerHTML = `${ethers.formatUnits(new_gwei_tx_cost * 2 * 3 * payment_input[2].value,'ether')} ${first_network_row.symbol}`;
 
   setTimeout(() => {
     set_tx_fee_cost();
@@ -298,14 +314,14 @@ function set_gas_cost(){
 
 function set_all_contract_action(){
 
-    const functionNames = abi.filter((item) => item.type === 'function').map((item) => item.name);
-
-    functionNames.forEach((name) => {
-      let option = document.createElement('option');
-      option.value = name;
-      option.textContent = name;
+  abi.forEach((item, index) => {
+    if (item.type === 'function') {
+      const option = document.createElement('option');
+      option.value = index;
+      option.text = item.name;
       contract_action_input.appendChild(option);
-    });
+    }
+  });
 
 }
 
@@ -321,8 +337,41 @@ function error_action(message,type,ele){
 
 function submit_btn_wait(btn){
   btn.innerHTML = "Wait...";
+  btn.disabled = true;
 }
 
 function submit_btn_normal(btn) {
   btn.innerHTML = 'Submit';
+  btn.disabled = false;
+}
+
+function create_form_for_abi_prametner(){
+  let abi_obj = abi[contract_action];
+
+  const functionFormContainer = document.querySelector('#abi_function_container');
+  
+
+  function generateForm(func) {
+    functionFormContainer.innerHTML = ''; 
+
+    const form = document.createElement('form');
+    form.id = 'functionForm';
+
+    func.inputs.forEach((input) => {
+      const inputDiv = document.createElement('div');
+      inputDiv.innerHTML = `<label for="${input.name}">${input.name} (${input.type}):</label><input type="text" id="${input.name}" name="${input.name}" required>`;
+      form.appendChild(inputDiv);
+    });
+
+    let heading = document.createElement('div');
+    heading.classList.add('pre_for_fun');
+    heading.innerHTML = func.name;
+
+    functionFormContainer.appendChild(heading);
+    functionFormContainer.appendChild(form);
+
+  }
+
+  generateForm(abi_obj); 
+
 }

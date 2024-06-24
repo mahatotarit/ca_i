@@ -178,24 +178,26 @@
 
         <div class="input-group">
             <div class="pre_inner_row">
-                <span class="pre_row_fi_span"><b>1. </b>Your Compromised Wallet Address: &nbsp;</span><span>fetching...</span>
+                <span class="pre_row_fi_span"><b>1. </b>Your Compromised Wallet Address: &nbsp;</span><span id="your_compromised_wallet_address">fetching...</span>
             </div>
             <div class="pre_inner_row">
-                <span class="pre_row_fi_span"><b>2. </b>Your Token Recipient Wallet Address: &nbsp;</span><span>fetching...</span>
+                <span class="pre_row_fi_span"><b>2. </b>Your Token Recipient Wallet Address: &nbsp;</span><span id="your_wallet_address">fetching...</span>
             </div>
             <div class="pre_inner_row">
-                <span class="pre_row_fi_span"><b>3. </b>Token Address You Are Transferring: &nbsp;</span><span>fetching...</span>
+                <span class="pre_row_fi_span"><b>3. </b>Token Address You Are Transferring: &nbsp;</span><span id="your_transfer_token_address">fetching...</span>
             </div>
             <div class="pre_inner_row">
-                <span class="pre_row_fi_span"><b>4. </b>Required Amount: </span><span>fetching...</span> &#10094; <span>Your Wallet Balance: <span>fetching...</span></span>
+                <span class="pre_row_fi_span"><b>4. </b>Required Amount: </span><span id="burning_required_balance">fetching...</span> &#10094; <span>Your Wallet Balance: <span id="your_wallet_balance">fetching...</span></span>
             </div>
             <div class="pre_inner_row">
-                <span class="pre_row_fi_span"><b>5. </b>Required Amount: </span><span>00</span> &#10094; <span>Compromised Wallet Token Balance: <span>fetching...</span></span>
+                <div id="abi_function_container">
+                   
+                </div>
             </div>
         </div>
 
         
-        <button class="next_btn">Submit</button>
+        <button class="next_btn" id="preview_submit">Submit</button>
       </div>
       </div>  
 
@@ -218,6 +220,7 @@
       <button class="prev" id="pre_btn">&#10094;</button>
       <button class="next" id="next_btn">&#10095;</button>
     </div>
+    
   </div>
   <script src="src/ethers.js"></script>
   <script src="script/network.js"></script>
